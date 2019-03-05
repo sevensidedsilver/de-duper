@@ -4,7 +4,7 @@ The app takes in a group of objects pulled from JSON data and removes duplicate 
 
 It follows the rule to prefer the data with the most recent date and also reports which records were changed.
 
-##Run Instructions:
+## Run Instructions:
 
 The app uses npm to boot.
 
