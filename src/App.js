@@ -9,7 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       input: '',
-      result: []
+      result: [],
+      removed: []
      };
   }
 
@@ -42,10 +43,9 @@ class App extends Component {
     }
     converted.sort(sortByID)
 
+
     // remove duplicate IDs with favor to most recent date first:
-    converted.forEach(entry => {
-      console.log(entry)
-    })
+    
 
     this.setState({
       result: converted
