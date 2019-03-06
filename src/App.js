@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       input: '',
-      result: ''
+      result: []
      };
   }
 
@@ -18,17 +18,19 @@ class App extends Component {
   }
 
   deDuplicate = () => {
-
+    // shows the user an error if their input is invalid
     try {
         JSON.parse(this.state.input);
     } catch (e) {
         window.alert("Please enter valid JSON (array of objects)")
         return false;
     }
-    let converted = JSON.parse(this.state.input)
+
+    // takes state value
+    let converted = JSON.parse(this.state.input).sort()
     console.log(converted)
     this.setState({
-      result: "asdf"
+      result: converted
     })
     return true;
 
@@ -41,7 +43,7 @@ class App extends Component {
       <div className="App">
         <Input handleType={this.handleType} value={this.state.input}/>
         <button onClick={this.deDuplicate}>De Duplicate</button>
-        <Output value={this.state.result}/>
+        <Output results={this.state.result}/>
       </div>
     );
   }
