@@ -17,6 +17,7 @@ class App extends Component {
     this.setState({input: e.target.value})
   }
 
+// The meat and potatoes of the challenge:
   deDuplicate = () => {
     // shows the user an error if their input is invalid
     try {
@@ -27,8 +28,25 @@ class App extends Component {
     }
 
     // takes state value
-    let converted = JSON.parse(this.state.input).sort()
-    console.log(converted)
+    let converted = JSON.parse(this.state.input)
+
+    // remove duplicates according to rules in challenge
+
+    // data prep! this step sorts the entries by their IDs
+    let sortByID = (a,b) => {
+      if (a._id < b._id)
+        return -1;
+      if (a._id > b._id)
+        return 1;
+      return 0;
+    }
+    converted.sort(sortByID)
+
+    // remove duplicate IDs with favor to most recent date first:
+    converted.forEach(entry => {
+      console.log(entry)
+    })
+
     this.setState({
       result: converted
     })
