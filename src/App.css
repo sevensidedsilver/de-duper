@@ -13,3 +13,11 @@
 .log div span {
   color: red;
 }
+
+button {
+    padding: 9px;
+    background: #c8c8ff;
+    box-shadow: none;
+    border-radius: 0;
+    cursor: pointer;
+}
