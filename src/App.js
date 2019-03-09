@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       input: '',
       result: [],
-      removed: []
+      removedLog: []
      };
   }
 
@@ -33,22 +33,42 @@ class App extends Component {
 
     // remove duplicates according to rules in challenge
 
-    // data prep! this step sorts the entries by their IDs
+    // data prep- this step reverses the order (last entries favored as per
+    // requirement #3) then
+    // sorts the entries by their dates
     let sortByID = (a,b) => {
-      if (a._id < b._id)
+      if (a.entryDate < b.entryDate)
         return -1;
-      if (a._id > b._id)
+      if (a.entryDate > b.entryDate)
         return 1;
       return 0;
     }
+    converted.reverse()
     converted.sort(sortByID)
 
+    // define a reusable function to filter our collection on specified argument
+    function getUnique(arr, comp) {
 
-    // remove duplicate IDs with favor to most recent date first:
-    
+      const unique = arr
+        .map(e => e[comp])
+         // store the keys of the unique objects
+        .map((e, i, final) => final.indexOf(e) === i && i)
+        // eliminate the dead keys & store unique objects
+        .filter(e => arr[e]).map(e => arr[e]);
+       return unique;
+    }
+
+    // remove duplicate IDs
+    let uniqueIDs = getUnique(converted, '_id')
+    //remove duplicate emails
+    let uniqueEmails= getUnique(uniqueIDs, 'email')
+
+    console.log(converted)
+    console.log(uniqueIDs)
+    console.log(uniqueEmails)
 
     this.setState({
-      result: converted
+      result: uniqueEmails
     })
     return true;
 
