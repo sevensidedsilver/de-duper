@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import difference from 'lodash/difference'
+
 import './App.css';
 
 import Input from './components/Input'
 import Output from './components/Output'
+
+
 
 class App extends Component {
   constructor(props) {
@@ -63,12 +67,28 @@ class App extends Component {
     //remove duplicate emails
     let uniqueEmails= getUnique(uniqueIDs, 'email')
 
-    console.log(converted)
-    console.log(uniqueIDs)
-    console.log(uniqueEmails)
+    // process differences between collections,
+    // add differences to our removedLog, including reason why
+    // it was removed as added property
+    let logIDs = difference(converted, uniqueIDs).map((item) => {
+      let o = Object.assign({}, item)
+      o.removedBecause = "duplicate ID"
+      return o
+    })
+
+
+    let logEmails = difference(uniqueIDs, uniqueEmails).map((item) => {
+      let o = Object.assign({}, item)
+      o.removedBecause = "duplicate email"
+      return o
+    })
+
+
+
 
     this.setState({
-      result: uniqueEmails
+      result: uniqueEmails,
+      removedLog: logEmails.concat(logIDs)
     })
     return true;
 
