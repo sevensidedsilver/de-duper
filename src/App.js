@@ -98,7 +98,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="AppWrap">
         <Input handleType={this.handleType} value={this.state.input}/>
         <button onClick={this.deDuplicate}>De Duplicate</button>
         <Output results={this.state.result}/>
