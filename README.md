@@ -13,3 +13,7 @@ Clone this repository, change directory into it, then use the commands
 "npm i" - to install dependencies, then
 
 "npm start" - to launch the app
+
+### Closing Notes:
+
+Its not pretty but it fufills the functional requirements... might update the styles a bit over the weekend if I have time.
