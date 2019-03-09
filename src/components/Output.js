@@ -1,5 +1,4 @@
 import React from 'react'
-import Clipboard from 'react-clipboard.js'
 
 const Output = ({results}) => {
 
@@ -35,7 +34,6 @@ const Output = ({results}) => {
       {object.entryDate}
       </div>)
   })
-  console.log(JSON.stringify(results))
 
   return (
     <div className="results" onClick={copyToClipboard(JSON.stringify(results))}>

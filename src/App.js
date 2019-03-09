@@ -5,6 +5,7 @@ import './App.css';
 
 import Input from './components/Input'
 import Output from './components/Output'
+import Log from './components/Log'
 
 
 
@@ -98,10 +99,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="AppWrap">
-        <Input handleType={this.handleType} value={this.state.input}/>
-        <button onClick={this.deDuplicate}>De Duplicate</button>
-        <Output results={this.state.result}/>
+      <div>
+        <div className="AppWrap">
+          <Input handleType={this.handleType} value={this.state.input}/>
+          <button onClick={this.deDuplicate}>De Duplicate</button>
+          <Output results={this.state.result}/>
+        </div>
+        <Log removedLog={this.state.removedLog} />
       </div>
     );
   }

@@ -8,3 +8,8 @@
 .results {
   height: 300px;
 }
+
+
+.log div span {
+  color: red;
+}
